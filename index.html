@@ -1,0 +1,393 @@
+<title>Privacidad Bookiful</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+  :root{
+    --bg: #fdf7f9;
+    --surface: #ffffff;
+    --surface-raised: #fff9fb;
+    --ink: #2b1f26;
+    --ink-muted: #7a6570;
+    --ink-faint: #a893a0;
+    --accent: #a83e6c;
+    --accent-ink: #ffffff;
+    --border: #ecdbe2;
+    --border-strong: #dcbdca;
+    --tint: #f7e3ec;
+    font-size: 17px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #1c1319;
+      --surface: #241820;
+      --surface-raised: #2b1c25;
+      --ink: #f5e9ee;
+      --ink-muted: #c2a9b4;
+      --ink-faint: #856975;
+      --accent: #ec9dc2;
+      --accent-ink: #2b1319;
+      --border: #3a2530;
+      --border-strong: #4d3140;
+      --tint: #33202b;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #1c1319;
+    --surface: #241820;
+    --surface-raised: #2b1c25;
+    --ink: #f5e9ee;
+    --ink-muted: #c2a9b4;
+    --ink-faint: #856975;
+    --accent: #ec9dc2;
+    --accent-ink: #2b1319;
+    --border: #3a2530;
+    --border-strong: #4d3140;
+    --tint: #33202b;
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Karla', ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3{
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    color: var(--ink);
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  a{ color: var(--accent); }
+  .label{
+    font-family: 'Karla', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .page{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+    display: grid;
+    grid-template-columns: 250px minmax(0,1fr);
+    gap: 56px;
+  }
+  @media (max-width: 860px){
+    .page{ grid-template-columns: 1fr; padding: 40px 20px 72px; gap: 32px; }
+    .toc{ position: static !important; order: 2; }
+    header.hero{ order: 1; }
+    main{ order: 3; }
+  }
+
+  header.hero{ grid-column: 1 / -1; max-width: 720px; }
+  .brandmark{
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 28px;
+  }
+  .brandmark .dot{
+    width: 10px; height: 10px; border-radius: 999px;
+    background: var(--accent);
+  }
+  .brandmark span{
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem;
+  }
+  h1.title{
+    font-size: clamp(2.1rem, 4.2vw, 2.9rem);
+    margin: 0 0 14px;
+    line-height: 1.1;
+  }
+  .meta-row{
+    display: flex; flex-wrap: wrap; gap: 10px 22px;
+    margin-bottom: 26px;
+  }
+  .meta-row div{ font-size: 0.86rem; color: var(--ink-muted); }
+  .meta-row b{ color: var(--ink); font-weight: 600; }
+
+  .tldr{
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 22px 24px;
+  }
+  .tldr .label{ margin-bottom: 10px; display:block; }
+  .tldr ul{ margin: 0; padding-left: 1.15em; }
+  .tldr li{ margin: 7px 0; color: var(--ink); }
+  .tldr li::marker{ color: var(--accent); }
+
+  nav.toc{
+    align-self: start;
+    position: sticky;
+    top: 32px;
+  }
+  nav.toc .label{ display:block; margin-bottom: 14px; }
+  nav.toc ol{
+    list-style: none; margin: 0; padding: 0;
+    border-left: 1px solid var(--border);
+  }
+  nav.toc li{ margin: 0; }
+  nav.toc a{
+    display: block;
+    padding: 7px 0 7px 16px;
+    margin-left: -1px;
+    border-left: 1px solid transparent;
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+  nav.toc a:hover{ color: var(--accent); border-left-color: var(--accent); }
+  nav.toc .num{
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-faint);
+    margin-right: 8px;
+  }
+
+  main{ min-width: 0; max-width: 720px; }
+  section{
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+  }
+  section:first-of-type{ border-top: none; padding-top: 0; }
+  section .num-row{
+    display: flex; align-items: baseline; gap: 14px;
+    margin-bottom: 14px;
+  }
+  section .num{
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  h2{ font-size: 1.4rem; margin: 0; }
+  h3{ font-size: 1.03rem; margin: 22px 0 8px; }
+  p{ margin: 0 0 14px; color: var(--ink); }
+  p.muted, li.muted{ color: var(--ink-muted); }
+
+  ul, ol.plain{ margin: 0 0 14px; padding-left: 1.25em; }
+  li{ margin: 5px 0; }
+
+  table{
+    width: 100%; border-collapse: collapse;
+    margin: 8px 0 20px;
+    font-size: 0.92rem;
+  }
+  caption{ text-align: left; font-size: 0.8rem; color: var(--ink-faint); margin-bottom: 6px; }
+  th, td{
+    text-align: left; padding: 10px 14px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th{
+    background: var(--surface-raised);
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  td{ background: var(--surface); }
+  .table-wrap{ overflow-x: auto; border-radius: 8px; }
+
+  .pill{
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+    padding: 3px 9px; border-radius: 999px;
+    background: var(--tint); color: var(--accent);
+  }
+
+  .contact-card{
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px 28px;
+    display: flex; flex-wrap: wrap; gap: 20px 32px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .contact-card .who{ font-family:'Fraunces', serif; font-size: 1.1rem; }
+  .contact-card a.mail{
+    font-weight: 700; text-decoration: none;
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 1px;
+  }
+
+  footer{
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    padding-top: 26px;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem; color: var(--ink-faint);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="brandmark"><span class="dot"></span><span>Bookiful</span></div>
+    <h1 class="title">Política de privacidad</h1>
+    <div class="meta-row">
+      <div>Vigente desde <b>7 de septiembre de 2026</b></div>
+      <div>Aplica a <b>la app móvil y el sitio web de Bookiful</b></div>
+    </div>
+    <div class="tldr">
+      <span class="label">En resumen</span>
+      <ul>
+        <li>Guardamos los datos necesarios para agendar citas: tu cuenta, tus citas, reseñas y, si eres especialista, tu perfil de negocio.</li>
+        <li><b>Nunca vemos ni almacenamos el número de tu tarjeta</b> — los pagos los procesan PayPal y Mercado Pago directamente.</li>
+        <li>No mostramos anuncios ni vendemos tus datos a nadie.</li>
+        <li>No usamos tu ubicación. No usamos rastreadores de publicidad.</li>
+        <li>Puedes pedir la eliminación de tu cuenta cuando quieras escribiendo a soporte@bookiful.com.</li>
+      </ul>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Contenido">
+    <span class="label">Contenido</span>
+    <ol>
+      <li><a href="#responsable"><span class="num">01</span>Quién es responsable</a></li>
+      <li><a href="#datos"><span class="num">02</span>Qué datos recopilamos</a></li>
+      <li><a href="#uso"><span class="num">03</span>Para qué los usamos</a></li>
+      <li><a href="#pagos"><span class="num">04</span>Pagos y suscripciones</a></li>
+      <li><a href="#terceros"><span class="num">05</span>Con quién los compartimos</a></li>
+      <li><a href="#seguridad"><span class="num">06</span>Cómo los protegemos</a></li>
+      <li><a href="#retencion"><span class="num">07</span>Cuánto tiempo los guardamos</a></li>
+      <li><a href="#derechos"><span class="num">08</span>Tus derechos</a></li>
+      <li><a href="#menores"><span class="num">09</span>Menores de edad</a></li>
+      <li><a href="#cambios"><span class="num">10</span>Cambios a esta política</a></li>
+      <li><a href="#contacto"><span class="num">11</span>Contacto</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section id="responsable">
+      <div class="num-row"><span class="num">01</span><h2>Quién es responsable de tus datos</h2></div>
+      <p>Bookiful es una plataforma para agendar citas con especialistas de belleza y bienestar (estética, barbería, spa y servicios similares). Esta política aplica a quienes usan la app móvil de Bookiful y el sitio web, ya sea como <b>cliente</b> que agenda citas o como <b>especialista</b> que ofrece sus servicios.</p>
+      <p>El responsable del tratamiento de tus datos es el equipo de Bookiful. Puedes contactarnos en cualquier momento en <a href="mailto:soporte@bookiful.com">soporte@bookiful.com</a>.</p>
+    </section>
+
+    <section id="datos">
+      <div class="num-row"><span class="num">02</span><h2>Qué datos recopilamos</h2></div>
+      <p>Solo recopilamos lo necesario para que agendar y gestionar citas funcione. Esto es lo que guardamos, según el tipo de cuenta:</p>
+
+      <h3>De toda cuenta (cliente o especialista)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Dato</th><th>Para qué lo pedimos</th></tr></thead>
+        <tbody>
+          <tr><td>Nombre, correo y teléfono</td><td>Crear tu cuenta, identificarte y que especialistas y clientes puedan contactarse sobre una cita</td></tr>
+          <tr><td>Contraseña</td><td>Nunca la vemos en texto plano — se guarda cifrada (hash)</td></tr>
+          <tr><td>Historial de citas</td><td>Fecha, hora, servicio y estado de cada cita que agendas o recibes</td></tr>
+          <tr><td>Reseñas, calificaciones y preguntas</td><td>Mostrar comentarios y respuestas dentro de la app</td></tr>
+          <tr><td>Notificaciones dentro de la app</td><td>Avisarte de citas nuevas, cambios de estado o mensajes — se entregan mientras tienes la app abierta, no son notificaciones push del sistema</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Si tienes un perfil de especialista</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Dato</th><th>Para qué lo pedimos</th></tr></thead>
+        <tbody>
+          <tr><td>Nombre del negocio y descripción</td><td>Mostrar tu perfil público a clientes que buscan servicios</td></tr>
+          <tr><td>Fotos que subes</td><td>Fotos de tu negocio y de tus servicios, visibles en tu perfil público</td></tr>
+          <tr><td>Servicios, precios y horarios</td><td>Que los clientes vean qué ofreces y puedan agendar</td></tr>
+          <tr><td>Historial de pagos de tu suscripción</td><td>Monto, fecha y estatus de cada pago — <b>nunca el número de tu tarjeta</b> (ver sección 04)</td></tr>
+        </tbody>
+      </table></div>
+
+      <p class="muted">No pedimos tu ubicación en ningún momento, no usamos identificadores de publicidad y no instalamos herramientas de rastreo de terceros dentro de la app.</p>
+    </section>
+
+    <section id="uso">
+      <div class="num-row"><span class="num">03</span><h2>Para qué usamos tus datos</h2></div>
+      <ul>
+        <li>Crear y proteger tu cuenta, y permitirte iniciar sesión.</li>
+        <li>Conectar clientes con especialistas: mostrar perfiles, agendar y confirmar citas.</li>
+        <li>Enviarte avisos dentro de la app sobre tus citas y tu suscripción (si eres especialista).</li>
+        <li>Mostrar reseñas y calificaciones de forma pública en el perfil del especialista correspondiente.</li>
+        <li>Si eres especialista, avisarte sobre el estado de tu suscripción y, si lo pides, generar un archivo Excel con tu propio historial de citas y reseñas.</li>
+        <li>Dar soporte cuando nos escribes con una duda o un problema.</li>
+      </ul>
+      <p class="muted">No usamos tus datos para publicidad. No mostramos anuncios en Bookiful ni de terceros.</p>
+    </section>
+
+    <section id="pagos">
+      <div class="num-row"><span class="num">04</span><h2>Pagos y suscripciones</h2></div>
+      <p>Los especialistas pagan una suscripción mensual para mantener su perfil activo. Ese cobro lo procesan <b>PayPal</b> y <b>Mercado Pago</b> directamente — cuando pagas, tu número de tarjeta y tus datos bancarios los captura su propio formulario seguro, nunca el nuestro.</p>
+      <p>Bookiful solo recibe de vuelta la confirmación del pago: si fue aprobado, el monto y la fecha. No tenemos acceso al número completo de tu tarjeta, CVV ni fecha de expiración, y no podríamos verlos aunque quisiéramos.</p>
+    </section>
+
+    <section id="terceros">
+      <div class="num-row"><span class="num">05</span><h2>Con quién compartimos tus datos</h2></div>
+      <p>No vendemos tus datos a nadie, bajo ninguna circunstancia. Solo los compartimos en estos casos puntuales:</p>
+      <ul>
+        <li><span class="pill">Pagos</span> Con PayPal y Mercado Pago, únicamente para procesar el pago de una suscripción — ver sección 04.</li>
+        <li><span class="pill">Entre usuarios</span> El nombre y la información de contacto necesaria para coordinar una cita se comparte entre el cliente y el especialista involucrados en esa cita.</li>
+        <li><span class="pill">Perfil público</span> El nombre del negocio, fotos, servicios, precios y reseñas de un especialista son visibles públicamente en la app, porque ese es el propósito de un perfil de especialista.</li>
+        <li><span class="pill">Ley</span> Si una autoridad nos lo requiere de forma legalmente vinculante, o para proteger la seguridad de nuestros usuarios.</li>
+      </ul>
+    </section>
+
+    <section id="seguridad">
+      <div class="num-row"><span class="num">06</span><h2>Cómo protegemos tus datos</h2></div>
+      <ul>
+        <li>Tu contraseña se guarda cifrada (hash) — nadie en Bookiful puede leerla.</li>
+        <li>Toda la comunicación entre la app y nuestros servidores viaja cifrada (HTTPS/TLS).</li>
+        <li>Iniciar sesión genera un token de acceso (JWT) en vez de reenviar tu contraseña en cada solicitud.</li>
+        <li>Los datos de pago sensibles nunca llegan a nuestros servidores — los maneja directamente PayPal o Mercado Pago (ver sección 04).</li>
+      </ul>
+    </section>
+
+    <section id="retencion">
+      <div class="num-row"><span class="num">07</span><h2>Cuánto tiempo guardamos tus datos</h2></div>
+      <p>Guardamos tus datos mientras tu cuenta esté activa. Si eres especialista y decides no continuar, puedes pedirnos que te enviemos por correo un Excel con tu historial de citas y reseñas antes de eliminar tu perfil.</p>
+      <p>Cuando eliminas tu cuenta, quitamos tu información pública y de contacto de inmediato. Conservamos únicamente el mínimo necesario del historial de transacciones cuando así lo exige la ley fiscal o contable, y solo por el tiempo que esa ley lo requiera.</p>
+    </section>
+
+    <section id="derechos">
+      <div class="num-row"><span class="num">08</span><h2>Tus derechos</h2></div>
+      <p>Sobre tus propios datos, en cualquier momento puedes pedirnos:</p>
+      <ul>
+        <li><b>Acceso:</b> una copia de los datos que tenemos sobre ti.</li>
+        <li><b>Corrección:</b> arreglar información tuya que esté equivocada o desactualizada.</li>
+        <li><b>Eliminación:</b> borrar tu cuenta y tu información personal.</li>
+        <li><b>Exportación:</b> si eres especialista, un archivo Excel con tu historial de citas, reseñas y preguntas.</li>
+      </ul>
+      <p>Para ejercer cualquiera de estos derechos, escríbenos a <a href="mailto:soporte@bookiful.com">soporte@bookiful.com</a> desde el correo asociado a tu cuenta.</p>
+    </section>
+
+    <section id="menores">
+      <div class="num-row"><span class="num">09</span><h2>Menores de edad</h2></div>
+      <p>Bookiful está dirigido a personas mayores de edad, ya que agendar citas implica compromisos y, en el caso de especialistas, pagos. No creamos cuentas a sabiendas para menores de edad. Si detectamos una cuenta de un menor, la eliminaremos.</p>
+    </section>
+
+    <section id="cambios">
+      <div class="num-row"><span class="num">10</span><h2>Cambios a esta política</h2></div>
+      <p>Si actualizamos esta política de forma relevante, lo avisaremos dentro de la app antes de que el cambio entre en vigor. La fecha al inicio de esta página siempre indica la versión vigente.</p>
+    </section>
+
+    <section id="contacto">
+      <div class="num-row"><span class="num">11</span><h2>Contacto</h2></div>
+      <div class="contact-card">
+        <div class="who">¿Dudas sobre tu privacidad?<br><span class="muted" style="font-family:'Karla',sans-serif; font-size:0.85rem; color:var(--ink-muted);">Escríbenos, respondemos directamente.</span></div>
+        <a class="mail" href="mailto:soporte@bookiful.com">soporte@bookiful.com</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 Bookiful</span>
+    <span>Versión del 7 de septiembre de 2026</span>
+  </footer>
+
+</div>
