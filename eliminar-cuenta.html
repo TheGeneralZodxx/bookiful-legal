@@ -1,0 +1,110 @@
+<title>Eliminar cuenta Bookiful</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+  :root{
+    --bg: #fdf7f9;
+    --surface: #ffffff;
+    --surface-raised: #fff9fb;
+    --ink: #2b1f26;
+    --ink-muted: #7a6570;
+    --ink-faint: #a893a0;
+    --accent: #a83e6c;
+    --border: #ecdbe2;
+    --tint: #f7e3ec;
+    font-size: 17px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #1c1319; --surface: #241820; --surface-raised: #2b1c25;
+      --ink: #f5e9ee; --ink-muted: #c2a9b4; --ink-faint: #856975;
+      --accent: #ec9dc2; --border: #3a2530; --tint: #33202b;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #1c1319; --surface: #241820; --surface-raised: #2b1c25;
+    --ink: #f5e9ee; --ink-muted: #c2a9b4; --ink-faint: #856975;
+    --accent: #ec9dc2; --border: #3a2530; --tint: #33202b;
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    background: var(--bg); color: var(--ink);
+    font-family: 'Karla', ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  h1,h2{ font-family: 'Fraunces', Georgia, serif; font-weight: 600; text-wrap: balance; letter-spacing: -0.01em; }
+  a{ color: var(--accent); }
+  .label{ font-family:'Karla',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.11em; text-transform:uppercase; color:var(--ink-faint); }
+
+  .page{ max-width: 720px; margin: 0 auto; padding: 64px 32px 96px; }
+  .brandmark{ display:inline-flex; align-items:center; gap:10px; margin-bottom:28px; }
+  .brandmark .dot{ width:10px; height:10px; border-radius:999px; background:var(--accent); }
+  .brandmark span{ font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; }
+  h1{ font-size: clamp(1.9rem, 4vw, 2.5rem); margin: 0 0 14px; line-height:1.1; }
+  .meta{ font-size:0.86rem; color:var(--ink-muted); margin-bottom: 30px; }
+
+  .steps{ list-style:none; margin:0 0 30px; padding:0; counter-reset: step; }
+  .steps li{
+    counter-increment: step;
+    display:flex; gap:16px; padding: 18px 0; border-top:1px solid var(--border);
+  }
+  .steps li:first-child{ border-top:none; }
+  .steps li::before{
+    content: counter(step);
+    font-family:'Fraunces',serif; font-weight:600; color: var(--accent);
+    background: var(--tint); width:30px; height:30px; border-radius:999px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    font-size:0.95rem;
+  }
+  .steps li div{ padding-top: 3px; }
+
+  .contact-card{
+    background: var(--surface-raised); border:1px solid var(--border); border-radius:12px;
+    padding: 24px 26px; margin: 8px 0 34px;
+  }
+  .contact-card a.mail{ font-weight:700; text-decoration:none; border-bottom:1.5px solid var(--accent); }
+
+  table{ width:100%; border-collapse:collapse; margin: 10px 0 30px; font-size:0.92rem; }
+  th,td{ text-align:left; padding:10px 14px; border:1px solid var(--border); }
+  th{ background:var(--surface-raised); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-muted); }
+  td{ background:var(--surface); }
+  .table-wrap{ overflow-x:auto; border-radius:8px; }
+
+  h2{ font-size:1.2rem; margin: 34px 0 12px; }
+  p{ margin:0 0 14px; }
+
+  footer{ margin-top:40px; padding-top:22px; border-top:1px solid var(--border); font-size:0.82rem; color:var(--ink-faint); }
+</style>
+
+<div class="page">
+  <div class="brandmark"><span class="dot"></span><span>Bookiful</span></div>
+  <h1>Cómo eliminar tu cuenta de Bookiful</h1>
+  <p class="meta">Aplica a cuentas de cliente y de especialista, en la app móvil y en el sitio web de Bookiful.</p>
+
+  <ol class="steps">
+    <li><div><strong>Escríbenos desde el correo de tu cuenta.</strong><br>Envía un correo a <a href="mailto:soporte@bookiful.com?subject=Eliminar%20mi%20cuenta">soporte@bookiful.com</a> con el asunto "Eliminar mi cuenta", usando la misma dirección con la que te registraste.</div></li>
+    <li><div><strong>Confirmamos tu identidad.</strong><br>Te respondemos para confirmar que la solicitud viene de ti y para verificar qué cuenta quieres eliminar.</div></li>
+    <li><div><strong>Eliminamos tu cuenta.</strong><br>Quitamos tu perfil, información de contacto y datos personales dentro de un plazo de 7 días hábiles.</div></li>
+  </ol>
+
+  <div class="contact-card">
+    <span class="label">Contacto directo</span>
+    <p style="margin:8px 0 0;">¿Prefieres que lo hagamos por ti directamente? Escríbenos a <a class="mail" href="mailto:soporte@bookiful.com">soporte@bookiful.com</a> y con gusto te ayudamos.</p>
+  </div>
+
+  <h2>Qué se elimina y qué se conserva</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Dato</th><th>Qué pasa al eliminar tu cuenta</th></tr></thead>
+    <tbody>
+      <tr><td>Nombre, correo, teléfono</td><td>Se elimina de inmediato</td></tr>
+      <tr><td>Perfil de negocio, fotos, servicios (especialistas)</td><td>Se elimina de inmediato</td></tr>
+      <tr><td>Reseñas y preguntas que escribiste</td><td>Se elimina de inmediato</td></tr>
+      <tr><td>Historial de citas y pagos</td><td>Se conserva de forma mínima solo cuando la ley fiscal o contable lo exige, y únicamente por el tiempo que esa ley lo requiera</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Si eres especialista y quieres conservar tu historial antes de irte, puedes pedirnos un archivo Excel con tus citas y reseñas antes de solicitar la eliminación — solo dilo en tu correo.</p>
+
+  <footer>© 2026 Bookiful · <a href="./">Política de privacidad</a></footer>
+</div>
