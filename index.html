@@ -225,8 +225,14 @@
     padding-top: 26px;
     border-top: 1px solid var(--border);
     font-size: 0.82rem; color: var(--ink-faint);
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    display: flex; flex-direction: column; gap: 10px;
   }
+  .footer-row{ display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .footer-creditos{
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.72rem; opacity: 0.6;
+  }
+  .footer-creditos img{ height: 14px; width: 14px; border-radius: 3px; }
 
   :focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
 </style>
@@ -386,8 +392,14 @@
   </main>
 
   <footer>
-    <span>© 2026 Bookiful</span>
-    <span>Versión del 7 de septiembre de 2026</span>
+    <div class="footer-row">
+      <span>© 2026 Bookiful</span>
+      <span>Versión del 7 de septiembre de 2026</span>
+    </div>
+    <div class="footer-creditos">
+      <img src="./flood-labs.png" alt="Flood Labs">
+      <span>Desarrollado por Flood Labs — Perseguimos el conocimiento hasta desbordarlo</span>
+    </div>
   </footer>
 
 </div>
